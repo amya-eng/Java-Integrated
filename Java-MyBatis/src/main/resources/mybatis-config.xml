@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+<!--    配置实体类所在包的路径，这样resultType就不用写那么长的前缀了-->
+    <typeAliases>
+        <package name="com.zzs.pojo"/>
+    </typeAliases>
+
+    <!--
+    environments：配置数据库连接环境信息。可以配置多个environment，通过default属性切换不同的environment
+    -->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <!--数据库连接信息-->
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql:///mybatis?useSSL=false"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+
+        <environment id="test">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <!--数据库连接信息-->
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql:///mybatis?useSSL=false"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <!--加载sql映射文件-->
+<!--        方法一：指定 XML 文件路径（最常见）-->
+<!--        <mapper resource="com/zzs/mapper/UserMapper.xml"/>-->
+<!--        方法二：指定接口类（需要 XML 和接口同名同包）-->
+<!--        <mapper class="com.zzs.mapper.UserMapper"/>-->
+<!--        方法三：扫描整个包-->
+        <package name="com.zzs.mapper"/>
+    </mappers>
+</configuration>
