@@ -6,7 +6,10 @@ import org.springframework.context.annotation.Bean;
 
 import javax.sql.DataSource;
 
+// 被SpringConfig的@Import引用，故不用加@Configuration
 public class MyBatisConfig {
+
+    // 拿到sqlSessionFactory
     @Bean
     public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource) {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
@@ -15,6 +18,7 @@ public class MyBatisConfig {
         return factoryBean;
     }
 
+    // 配置mapper接口的扫描
     @Bean
     public MapperScannerConfigurer mapperScannerConfigurer() {
         MapperScannerConfigurer msc = new MapperScannerConfigurer();

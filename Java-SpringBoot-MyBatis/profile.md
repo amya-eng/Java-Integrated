@@ -1,0 +1,1 @@
+只需要在创建项目的时候，勾选上Spring Web, MyBatis, SQL driver即可。

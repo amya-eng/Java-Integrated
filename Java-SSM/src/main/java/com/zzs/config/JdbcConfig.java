@@ -8,6 +8,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 
+// 被SpringConfig的@Import引用，故不用加@Configuration
 public class JdbcConfig {
     @Value("${jdbc.driver}")
     private String driver;
@@ -18,6 +19,7 @@ public class JdbcConfig {
     @Value("${jdbc.password}")
     private String password;
 
+    // 配置druid连接池
     @Bean
     public DataSource dataSource() {
         DruidDataSource dataSource = new DruidDataSource();
@@ -28,6 +30,7 @@ public class JdbcConfig {
         return dataSource;
     }
 
+    // 配置jdbc事务管理器
     @Bean
     public PlatformTransactionManager transactionManager(DataSource dataSource) {
         DataSourceTransactionManager ds = new DataSourceTransactionManager();

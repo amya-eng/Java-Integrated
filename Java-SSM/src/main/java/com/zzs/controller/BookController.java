@@ -7,7 +7,7 @@ import com.zzs.domain.Book;
 
 import java.util.List;
 
-@RestController
+@RestController                        // @Controller + @ResponseBody（所有方法返回的对象会自动转成 JSON）
 @RequestMapping("/books")
 public class BookController {
     @Autowired
