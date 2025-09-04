@@ -1,0 +1,1 @@
+拖进IJ，配置localhost Tomcat_Spring:加上deployment < artifact: exploded var, 右上角点击启动即可。

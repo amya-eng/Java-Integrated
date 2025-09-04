@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--bean标签标示配置bean
+    id属性标示给bean起名字, bean的唯一标识，取名有标准，一般是类名首字母小写
+    class属性表示给bean定义类型: 类的全限定名
+    scope属性表示bean的作用范围
+    name属性表示给bean起别名，多个别名用逗号隔开
+    -->
+
+<!--    这里可以直接用接口来命名，是因为：-->
+<!--    解耦：上层只依赖接口，而不关心具体实现。-->
+<!--    可扩展性：将来如果需要替换实现类，只需要改 xml 配置，不需要改 Java 代码。-->
+<!--    符合依赖倒置原则：程序面向接口编程，降低耦合。-->
+
+<!--    所以，实际上，Spring的xml文件是用来配置接口和实现类的一一对应的关系的：这个接口的底层实现类是哪个，具体实现类是哪个。但不止如此，Spring 的 XML 文件主要是用来配置 Bean 及其依赖关系的。-->
+    <bean id="bookDao" class="dao.impl.BookDaoImpl"/>
+
+
+    <!--property标签表示配置当前bean的属性
+        name属性表示配置哪一个具体的属性
+        ref属性表示参照哪一个bean
+    -->
+    <bean id="bookService" class="service.impl.BookServiceImpl" scope="prototype">       <!-- class不能写接口，因为接口不能实例化-->
+        <property name="bookDao" ref="bookDao"/>               <!-- 注意：配置中的两个bookDao的含义是不一样的, 前面一个是告诉IOC容器把首字母大写，前缀set找setter方法，将后一个Bean注入 -->
+    </bean>
+</beans>
